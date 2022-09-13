@@ -1,28 +1,8 @@
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
+import { postsReducer } from "./postsReducer";
 
-const initialState = {
-  status: "idle",
-  posts: [],
-  test: "test",
-};
+const rootReducer = combineReducers({posts: postsReducer})
 
-const postsReducer = (state, action) => {
-  const newState = { ...state };
-
-  if (action.type === "setPosts") {
-    newState.posts = action.posts;
-    newState.status = "completed";
-  }
-
-  if (action.type === "test") {
-    newState.test = "test changed";
-  }
-
-  return newState;
-};
-
-let store = createStore(postsReducer, initialState);
-
-store.dispatch({ type: "test" });
+let store = createStore(rootReducer);
 
 export default store;

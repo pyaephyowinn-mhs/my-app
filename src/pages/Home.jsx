@@ -6,8 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 const FAKE_DOMAIN = "https://jsonplaceholder.typicode.com/posts";
 
 const Home = () => {
-  const { posts, status, test } = useSelector((state) => state);
-  console.log("test", test);
+  const { posts, status } = useSelector((state) => state.posts);
 
   const dispatch = useDispatch();
 
