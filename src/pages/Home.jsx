@@ -2,18 +2,18 @@ import axios from "axios";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { fetchAllPosts } from "../store/actions/posts";
 
 const FAKE_DOMAIN = "https://jsonplaceholder.typicode.com/posts";
 
 const Home = () => {
-  const { posts, status } = useSelector((state) => state.posts);
+  const { posts, status, text } = useSelector((state) => state.posts);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await axios.get(FAKE_DOMAIN);
-      dispatch({ type: "setPosts", posts: response.data });
+      dispatch(fetchAllPosts());
     };
     if (status === "idle") {
       fetchPosts();
@@ -37,7 +37,7 @@ const Home = () => {
     ));
 
   return (
-    <div className="flex flex-col items-center bg-gray-500">
+    <div className="flex flex-col items-center">
       <h1 className="text-2xl my-4">Posts</h1>
       {status === "completed" && <div>{postsContent}</div>}
     </div>
