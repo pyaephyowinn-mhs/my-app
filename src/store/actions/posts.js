@@ -1,7 +1,5 @@
 import axios from "axios";
-import { SET_POSTS, SET_TEXT } from "../types/posts";
-
-const FAKE_DOMAIN = "https://jsonplaceholder.typicode.com/posts";
+import { SET_POSTS } from "../types/posts";
 
 export const setPosts = (posts) => {
   return {
@@ -10,16 +8,9 @@ export const setPosts = (posts) => {
   };
 };
 
-export const setText = (text) => {
-  return {
-    type: SET_TEXT,
-    text,
-  };
-};
-
 export const fetchAllPosts = () => {
   return async (dispatch) => {
-    const response = await axios.get(FAKE_DOMAIN);
+    const response = await axios.get(process.env.REACT_APP_API_DOMAIN);
     dispatch(setPosts(response.data));
   };
 };

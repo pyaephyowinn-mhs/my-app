@@ -1,13 +1,10 @@
-import axios from "axios";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllPosts } from "../store/actions/posts";
 
-const FAKE_DOMAIN = "https://jsonplaceholder.typicode.com/posts";
-
 const Home = () => {
-  const { posts, status, text } = useSelector((state) => state.posts);
+  const { posts, status } = useSelector((state) => state.posts);
 
   const dispatch = useDispatch();
 

@@ -2,17 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 
-const FAKE_DOMAIN = "https://jsonplaceholder.typicode.com/posts";
-
 const PostDetail = () => {
   const { pid } = useParams();
   const [post, setPost] = useState();
 
-  console.log("POST", post);
-
   useEffect(() => {
     const fetchPost = async () => {
-      const fetchedPost = await axios.get(FAKE_DOMAIN + "/" + pid);
+      const fetchedPost = await axios.get(process.env.REACT_APP_API_DOMAIN + "/" + pid);
       setPost(fetchedPost.data);
     };
     fetchPost();

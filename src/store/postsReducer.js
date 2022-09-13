@@ -1,9 +1,8 @@
-import { SET_POSTS, SET_TEXT } from "./types/posts";
+import { SET_POSTS } from "./types/posts";
 
 const initialState = {
   status: "idle",
   posts: [],
-  text: null,
 };
 
 const postsReducer = (state = initialState, action) => {
@@ -13,11 +12,7 @@ const postsReducer = (state = initialState, action) => {
     newState.posts = action.posts;
     newState.status = "completed";
   }
-
-  if (action.type === SET_TEXT) {
-    newState.text = action.text;
-  }
-
+  
   return newState;
 };
 
