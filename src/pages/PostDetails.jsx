@@ -4,8 +4,6 @@ import { useParams, Link } from "react-router-dom";
 const PostDetail = ({ post: postState, fetchAPost }) => {
   const { post, status, errMessage } = postState;
 
-  console.log(post, status, errMessage);
-
   const { pid } = useParams();
 
   useEffect(() => {
