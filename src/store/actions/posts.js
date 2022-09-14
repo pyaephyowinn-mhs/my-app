@@ -18,7 +18,7 @@ export const fetchAllPosts = () => {
   return async (dispatch) => {
     dispatch(fetchDataRequest());
     const response = await axios.get(process.env.REACT_APP_API_DOMAIN);
-    console.log(response);
+    // console.log(response);
     dispatch(setPosts(response.data));
   };
 };
