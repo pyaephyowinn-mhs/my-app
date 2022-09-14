@@ -1,20 +1,19 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 const Home = ({ posts: postsState, fetchAllPosts }) => {
-  const dispatch = useDispatch();
 
   const { posts, status } = postsState;
+  console.log(fetchAllPosts);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      await dispatch(fetchAllPosts());
+      await fetchAllPosts();
     };
     if (status === "idle") {
       fetchPosts();
     }
-  }, [status, fetchAllPosts, dispatch]);
+  }, [status, fetchAllPosts]);
 
   const postsContent =
     posts &&

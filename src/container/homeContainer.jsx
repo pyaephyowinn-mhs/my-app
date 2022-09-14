@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAllPosts: () => dispatch(fetchAllPosts),
+    fetchAllPosts: () => dispatch(fetchAllPosts()),
     test: () => console.log("test func"),
   };
 };
