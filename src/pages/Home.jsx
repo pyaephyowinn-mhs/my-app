@@ -36,7 +36,8 @@ const Home = () => {
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-2xl my-4">Posts</h1>
-      {status === "completed" && <div>{postsContent}</div>}
+      {status === "loading" && <div>loading...</div>}
+      {status === "completed" && <div>{postsContent} </div>}
     </div>
   );
 };

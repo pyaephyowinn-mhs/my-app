@@ -1,4 +1,4 @@
-import { SET_POSTS } from "./types/posts";
+import { SET_POSTS, FETCH_POSTS_REQUEST } from "./types/posts";
 
 const initialState = {
   status: "idle",
@@ -12,7 +12,11 @@ const postsReducer = (state = initialState, action) => {
     newState.posts = action.posts;
     newState.status = "completed";
   }
-  
+
+  if( action.type === FETCH_POSTS_REQUEST) {
+    newState.status = "loading";
+  }
+
   return newState;
 };
 
