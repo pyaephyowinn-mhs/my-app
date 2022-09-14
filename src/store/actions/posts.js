@@ -1,24 +1,38 @@
 import axios from "axios";
-import { SET_POSTS, FETCH_POSTS_REQUEST } from "../types/posts";
+import {
+  FETCH_ALL_POSTS_SUCCESS,
+  FETCH_ALL_POSTS_REQUEST,
+  FETCH_ALL_POSTS_FAILURE,
+} from "../types/posts";
 
-export const setPosts = (posts) => {
+export const fetchAllPostsRequest = () => {
   return {
-    type: SET_POSTS,
+    type: FETCH_ALL_POSTS_REQUEST,
+  };
+};
+
+export const fetchAllPostsSuccess = (posts) => {
+  return {
+    type: FETCH_ALL_POSTS_SUCCESS,
     posts,
   };
 };
 
-export const fetchDataRequest = () => {
+export const fetchAllPostsFailure = (errMessage) => {
   return {
-    type: FETCH_POSTS_REQUEST,
-  }
-}
+    type: FETCH_ALL_POSTS_FAILURE,
+    errMessage,
+  };
+};
 
 export const fetchAllPosts = () => {
   return async (dispatch) => {
-    dispatch(fetchDataRequest());
-    const response = await axios.get(process.env.REACT_APP_API_DOMAIN);
-    // console.log(response);
-    dispatch(setPosts(response.data));
+    dispatch(fetchAllPostsRequest());
+    try {
+      const response = await axios.get(process.env.REACT_APP_API_DOMAIN);
+      dispatch(fetchAllPostsSuccess(response.data));
+    } catch (err) {
+      dispatch(fetchAllPostsFailure(err.message));
+    }
   };
 };

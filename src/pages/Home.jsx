@@ -2,16 +2,11 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Home = ({ posts: postsState, fetchAllPosts }) => {
-
-  const { posts, status } = postsState;
-  console.log(fetchAllPosts);
+  const { posts, status, errMessage } = postsState;
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      await fetchAllPosts();
-    };
     if (status === "idle") {
-      fetchPosts();
+      fetchAllPosts();
     }
   }, [status, fetchAllPosts]);
 
@@ -35,6 +30,9 @@ const Home = ({ posts: postsState, fetchAllPosts }) => {
     <div className="flex flex-col items-center">
       <h1 className="text-2xl my-4">Posts</h1>
       {status === "loading" && <div>loading...</div>}
+      {status === "error" && (
+        <div>{errMessage || "something went wrong, try again later"}</div>
+      )}
       {status === "completed" && <div>{postsContent} </div>}
     </div>
   );

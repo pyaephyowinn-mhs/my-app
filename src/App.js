@@ -1,15 +1,12 @@
-import "./App.css";
 import { Route, Routes } from "react-router-dom";
-// import Home from "./pages/Home";
-import HomeContainer from "./container/homeContainer";
-import PostDetail from "./pages/PostDetail";
+import Home from "./container/homeContainer";
+import PostDetails from "./container/postDetailsContainer";
 
 function App() {
   return (
     <Routes>
-      {/* <Route index element={<Home />} /> */}
-      <Route index element={<HomeContainer />} />
-      <Route path="/:pid" element={<PostDetail />} />
+      <Route index element={<Home />} />
+      <Route path="/:pid" element={<PostDetails />} />
     </Routes>
   );
 }
