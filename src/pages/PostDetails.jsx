@@ -7,10 +7,8 @@ const PostDetail = ({ post: postState, fetchAPost }) => {
   const { pid } = useParams();
 
   useEffect(() => {
-    if (status === "idle") {
-      fetchAPost(pid);
-    }
-  }, [pid, status, fetchAPost]);
+    fetchAPost(pid);
+  }, [pid, fetchAPost]);
 
   return (
     <div className="flex justify-center items-center min-h-screen ">
